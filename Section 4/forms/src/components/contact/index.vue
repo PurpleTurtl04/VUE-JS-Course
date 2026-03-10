@@ -105,14 +105,16 @@
 
                 <button class="btn btn-primary">Submit</button>
 
-                <hr>
+                <hr />
 
-                <p v-if="errors.length">
+                <div v-if="errors.length">
                     <strong>Oops, fix the errors:</strong>
                     <ul>
-                        <li v-for="error in errors" :key="error">{{ error }}</li>
+                        <li v-for="error in errors" :key="error">
+                            {{ error }}
+                        </li>
                     </ul>
-                </p>
+                </div>
             </div>
         </div>
     </form>
