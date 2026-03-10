@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit="checkForm">
         <div class="row">
             <div class="col-xl-12">
                 <h1>Contact us</h1>
@@ -45,7 +45,7 @@
                     ></textarea>
                 </div>
 
-                <!-- <div class="mb-3">
+                <div class="mb-3">
                     <h5>Want more spam ?</h5>
                     <div class="form-check">
                         <input
@@ -53,6 +53,7 @@
                             type="checkbox"
                             value="Newsletter"
                             id="newsletter"
+                            v-model="formData.extras"
                         />
                         <label class="form-check-label" for="newsletter">
                             Newsletter
@@ -64,8 +65,9 @@
                             type="checkbox"
                             value="Promotions"
                             id="promotions"
+                            v-model="formData.extras"
                         />
-                        <label class="form-check-label" for="newsletter">
+                        <label class="form-check-label" for="promotions">
                             Promotions
                         </label>
                     </div>
@@ -79,7 +81,8 @@
                             type="radio"
                             id="human"
                             value="human"
-                            name="origin"
+                            name="gender"
+                            v-model="formData.gender"
                         />
                         <label class="form-check-label" for="human">
                             Human
@@ -91,17 +94,25 @@
                             type="radio"
                             id="alien"
                             value="alien"
-                            name="origin"
+                            name="gender"
+                            v-model="formData.gender"
                         />
                         <label class="form-check-label" for="alien">
                             Alien
                         </label>
                     </div>
-                </div> -->
+                </div>
 
-                <button class="btn btn-primary" @click.prevent="submitForm">
-                    Submit
-                </button>
+                <button class="btn btn-primary">Submit</button>
+
+                <hr>
+
+                <p v-if="errors.length">
+                    <strong>Oops, fix the errors:</strong>
+                    <ul>
+                        <li v-for="error in errors" :key="error">{{ error }}</li>
+                    </ul>
+                </p>
             </div>
         </div>
     </form>
@@ -110,12 +121,33 @@
 <script setup>
     import { reactive } from 'vue';
 
+    const errors = reactive([]);
+
     const formData = reactive({
-        name: 'Francis',
+        name: '',
         email: '',
         subject: '',
         message: '',
+        extras: [],
+        gender: 'alien',
     });
+
+    const checkForm = (e) => {
+        e.preventDefault();
+        errors.splice(0);
+
+        if (!formData.name) {
+            errors.push('Sorry, the name is required');
+        }
+
+        if (!formData.email) {
+            errors.push('Sorry, the email is required');
+        }
+
+        if (!errors.length) {
+            submitForm();
+        }
+    };
 
     const submitForm = () => {
         console.log(JSON.stringify(formData));
