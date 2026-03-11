@@ -20,7 +20,7 @@
                     >
                 </li>
                 <li class="nav-item">
-                    <RouterLink to="/contact" class="nav-link"
+                    <RouterLink :to="{ name: 'contact' }" class="nav-link"
                         >Contact</RouterLink
                     >
                 </li>

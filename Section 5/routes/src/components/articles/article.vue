@@ -1,4 +1,5 @@
 <template>
+    <router-link to="/articles/3">Go to a different article</router-link>
     <div v-if="Object.keys(article).length !== 0">
         <div class="row g-5">
             <div class="col-md-8">
@@ -32,12 +33,15 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from 'vue';
+    import { onMounted, ref, watchEffect } from 'vue';
     import { useRoute } from 'vue-router';
     import axios from 'axios';
 
     const route = useRoute();
     const article = ref({});
+
+    const props = defineProps(['crazy']);
+    console.log(props.crazy);
 
     const loadArticleData = (articleID) => {
         axios
@@ -50,4 +54,9 @@
     onMounted(() => {
         loadArticleData(route.params.articleID);
     });
+
+    (watchEffect(() => route.params.articleID),
+        async (newID) => {
+            loadArticleData(newID);
+        });
 </script>

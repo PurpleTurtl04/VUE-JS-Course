@@ -2,10 +2,7 @@
     <app-header></app-header>
     <div class="container">
         <router-view />
-        <!-- <home-component></home-component> -->
-        <!-- <articles-main></articles-main> -->
-        <!-- <article-comp></article-comp> -->
-        <!-- <contact-component></contact-component> -->
+        <router-view name="notify" />
     </div>
 </template>
 
