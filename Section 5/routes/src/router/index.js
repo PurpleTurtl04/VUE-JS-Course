@@ -13,6 +13,16 @@ const propsBack = (route) => {
     };
 };
 
+const checkAuth = () => {
+    const isAuth = true;
+    if (!isAuth) return '/login';
+};
+
+const isAdmin = () => {
+    const isAdmin = true;
+    if (!isAdmin) return '/';
+};
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -20,19 +30,13 @@ const router = createRouter({
         {
             path: '/articles',
             component: Articles,
-            children: [
-                {
-                    path: ':articleID',
-                    component: Article,
-                    props: propsBack,
-                },
-            ],
+            beforeEnter: [checkAuth, isAdmin],
         },
-        // {
-        //     path: '/articles/:articleID',
-        //     component: Article,
-        //     props: propsBack,
-        // },
+        {
+            path: '/articles/:articleID',
+            component: Article,
+            props: propsBack,
+        },
         {
             path: '/contact',
             components: {
@@ -59,8 +63,8 @@ const router = createRouter({
 //     }
 // });
 
-router.afterEach(() => {
-    console.log('after each');
-});
+// router.afterEach(() => {
+//     console.log('after each');
+// });
 
 export default router;

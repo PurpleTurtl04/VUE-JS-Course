@@ -34,7 +34,7 @@
 
 <script setup>
     import { onMounted, ref, watchEffect } from 'vue';
-    import { useRoute } from 'vue-router';
+    import { useRoute, onBeforeRouteUpdate } from 'vue-router';
     import axios from 'axios';
 
     const route = useRoute();
@@ -55,8 +55,12 @@
         loadArticleData(route.params.articleID);
     });
 
-    (watchEffect(() => route.params.articleID),
-        async (newID) => {
-            loadArticleData(newID);
-        });
+    onBeforeRouteUpdate(async (to, from) => {
+        loadArticleData(to.params.articleID);
+    });
+
+    // (watchEffect(() => route.params.articleID),
+    //     async (newID) => {
+    //         loadArticleData(newID);
+    //     });
 </script>
