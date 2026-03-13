@@ -7,14 +7,14 @@
                 <button
                     type="button"
                     class="btn btn-primary btn-lg px-4 gap-3"
-                    @click="add"
+                    @click="store.add"
                 >
                     +
                 </button>
                 <button
                     type="button"
                     class="btn btn-outline-secondary btn-lg px-4"
-                    @click="subtract"
+                    @click="store.subtract"
                 >
                     -
                 </button>
@@ -37,12 +37,12 @@
     const store = useCounterStore();
 
     const count = computed(() => store.getCount);
-    const add = () => {
-        store.counter++;
-    };
-    const subtract = () => {
-        store.counter--;
-    };
+    // const add = () => {
+    //     store.counter++;
+    // };
+    // const subtract = () => {
+    //     store.counter--;
+    // };
     const getPrizeHandler = () => {
         let value = store.getPrize;
         alert(`${value.prize} & ${value.attempts}`);
