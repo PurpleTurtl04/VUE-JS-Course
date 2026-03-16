@@ -1,0 +1,19 @@
+{
+    "name": "server",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "jserv": "json-server --watch db.json --port 3004"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.8",
+        "nuxt": "^4.4.2",
+        "vue": "^3.5.30",
+        "vue-router": "^5.0.3"
+    }
+}
