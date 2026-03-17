@@ -23,6 +23,12 @@
       "position": "Dev",
       "age": 23,
       "id": 4
+    },
+    {
+      "fullname": "Mica Jules",
+      "position": "Manager",
+      "age": 35,
+      "id": 5
     }
   ]
 }

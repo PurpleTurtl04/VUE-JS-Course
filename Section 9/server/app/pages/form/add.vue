@@ -45,10 +45,13 @@
     });
 
     async function submitForm() {
-        const request = await $fetch('/api/employees', {
-            method: 'post',
-            body: formData.value,
-        });
-        console.log(request);
+        try {
+            await $fetch('/api/employees', {
+                method: 'post',
+                body: formData.value,
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 </script>
