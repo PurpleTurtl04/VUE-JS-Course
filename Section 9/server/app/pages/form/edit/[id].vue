@@ -64,10 +64,11 @@
 
     async function submitForm() {
         try {
-            await $fetch('/api/employees', {
-                method: 'post',
+            await $fetch(`/api/employees/byid?id=${route.params.id}`, {
+                method: 'PATCH',
                 body: formData.value,
             });
+            alert('Employee updated successfully');
         } catch (error) {
             console.log(error);
         }
